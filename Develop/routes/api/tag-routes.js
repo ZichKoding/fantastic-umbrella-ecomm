@@ -31,6 +31,39 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  Tag.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'tag_name'
+    ],
+    include: [
+      {
+        model: Product,
+        as: 'product_tags',
+        attributes: ['product_name', 'price'],
+        include: [
+          {
+            model: Category,
+            attributes: ['category_name']
+          }
+        ]
+      }
+    ]
+  })
+    .then(dbTagData => {
+      if(!dbTagData) {
+        res.status(404).json({ message: "Could not find tag by this id." });
+        return;
+      }
+      res.json(dbTagData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   // find a single tag by its `id`
   // be sure to include its associated Product data
 });
