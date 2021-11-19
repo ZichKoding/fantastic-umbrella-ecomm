@@ -11,6 +11,12 @@ router.get('/', (req, res) => {
       'product_name',
       'price',
       'stock'
+    ],
+    include: [
+      {
+        model: Category,
+        attributes: ['id', 'category_name']
+      }
     ]
   })
     .then(dbProductData => res.json(dbProductData))
@@ -31,7 +37,13 @@ router.get('/:id', (req, res) => {
     ],
     where: {
       id: req.params.id
-    }
+    },
+    include: [
+      {
+        model: Category,
+        attributes: ['id', 'category_name']
+      }
+    ]
   })
     .then(dbProductData => {
       if(!dbProductData) {
@@ -59,7 +71,8 @@ router.post('/', (req, res) => {
   Product.create({
     product_name: req.body.product_name,
     price: req.body.price,
-    stock: req.body.stock
+    stock: req.body.stock,
+    category_id: req.body.category_id
   })
     .then(dbProductData => res.json(dbProductData))
     // .then((product) => {
