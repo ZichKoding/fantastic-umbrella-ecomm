@@ -21,10 +21,35 @@ router.get('/', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-  // be sure to include its associated Products
 });
 
 router.get('/:id', (req, res) => {
+  Category.findOne({
+    attributes: [
+      'id',
+      'category_name'
+    ],
+    where: {
+      id: req.params.id
+    },
+    include: [
+      {
+        model: Product,
+        attributes: ['id', 'product_name', 'price', 'stock']
+      }
+    ]
+  })
+    .then(dbCategoryData => {
+      if(!dbCategoryData) {
+        res.status(404).json({ message: "Could not find a category from this id" });
+        return;
+      }
+      res.json(dbCategoryData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.json(500).json(err);
+    });
   // find one category by its `id` value
   // be sure to include its associated Products
 });
