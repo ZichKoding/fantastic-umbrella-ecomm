@@ -1,4 +1,5 @@
 const router = require('express').Router();
+// const { where } = require('sequelize/types');
 const { Tag, Product, ProductTag, Category } = require('../../models');
 
 // The `/api/tags` endpoint
@@ -80,7 +81,22 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+  })
+    .then(dbTagData => {
+      if(!dbTagData) {
+        res.status(404).json({ message: "Could not find tag by this id." });
+        return;
+      }
+      res.json(dbTagData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
