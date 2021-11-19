@@ -23,7 +23,7 @@ Product.init(
       }
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     stock: {
