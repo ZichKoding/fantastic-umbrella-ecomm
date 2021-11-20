@@ -1,6 +1,7 @@
 # Fantastic Umbrella E-commerce Back End
 
-![/api/products](./img/productsapi.png)
+[Fantastic Umbrella E-commerce Back End Walkthrough Video](https://www.youtube.com/watch?v=Iou1PhDjYVY&ab_channel=ZichKoding)
+[![/api/products](./img/productsapi.png)](https://www.youtube.com/watch?v=Iou1PhDjYVY&ab_channel=ZichKoding)
 
 ## _Table of Contents_
 * Description
