@@ -1,7 +1,6 @@
 # Fantastic Umbrella E-commerce Back End
 
-_Click image below for live application_
-[![ZNoteTaker](./public/assets/images/NoteTaker.png)](https://znotetaker.herokuapp.com/)
+![/api/products](./img/productsapi.png)
 
 ## _Table of Contents_
 * Description
