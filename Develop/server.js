@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // turn on connection to db and server
+// to initialize the db turn force to true and uncommment `.then(seedAll())`
+// run `node server.js` or `npm start`
+// come back to server.js turn force to false and comment `.then(seedAll())`
 sequelize.sync({ force: false })
   // .then(seedAll())
   .then(() => {
